@@ -1,0 +1,39 @@
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>Manage your inventory efficiently.</p>
+
+    <div class="dashboard-actions">
+        <!-- Button to go to Medicine List -->
+        <a href="{% url 'medicine_list' %}" class="action-card">
+            <div class="action-icon"><i class="fa fa-pills"></i></div>
+            <h3>View Inventory</h3>
+            <p>Check stock levels and expiry dates</p>
+        </a>
+
+        <!-- Button to Add Medicine -->
+        <a href="{% url 'add_medicine' %}" class="action-card">
+            <div class="action-icon"><i class="fa fa-plus-circle"></i></div>
+            <h3>Add Medicine</h3>
+            <p>Register new stock items</p>
+        </a>
+
+        <!-- Button for Expired items removal (could be a link or action) -->
+        <a href="{% url 'medicine_list' %}?filter=expired" class="action-card">
+            <div class="action-icon"><i class="fa fa-trash-alt"></i></div>
+            <h3>Expired Items</h3>
+            <p>Review and remove expired stock</p>
+        </a>
+
+        <!-- Link to Help -->
+        <a href="{% url 'help' %}" class="action-card">
+            <div class="action-icon"><i class="fa fa-question-circle"></i></div>
+            <h3>Help</h3>
+            <p>How to use MediStock</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

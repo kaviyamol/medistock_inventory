@@ -1,0 +1,68 @@
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row" style="margin: 2rem;">
+    <h2><i class="fa fa-pills"></i> Medicine Stock</h2>
+    <div style="margin-left: auto;">
+        <a href="{% url 'add_medicine' %}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Medicine</a>
+        <a href="{% url 'remove_expired' %}" class="btn btn-danger"
+            onclick="return confirm('Are you sure you want to delete all expired medicines?');">
+            <i class="fa fa-trash"></i> Remove Expired
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive" style="margin: 0 2rem 2rem;">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Expiry Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medicine in medicines %}
+            <tr>
+                <td>{{ medicine.name }}</td>
+                <td>{{ medicine.quantity }}</td>
+                <td>{{ medicine.expiry_date }}</td>
+                <td>
+                    {% if medicine.is_expired %}
+                    <span class="badge" style="color: #ff0000; font-weight: bold;">Expired</span>
+                    {% else %}
+                    <span class="badge" style="color: #5acf0c; font-weight: bold;">Active</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'delete_medicine' medicine.id %}" class="btn btn-danger"
+                        style="padding: 5px 10px; font-size: 0.8rem;"
+                        onclick="return confirm('Delete this medicine?');">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center;">No medicines found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

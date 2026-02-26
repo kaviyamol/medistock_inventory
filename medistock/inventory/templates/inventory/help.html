@@ -1,0 +1,25 @@
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="help-container">
+    <h1>Help Center</h1>
+    <p>Welcome to MediStock. Here's how to manage your inventory:</p>
+
+    <h3>1. Login/Signup</h3>
+    <p>Use the credentials you created during signup to access the dashboard.</p>
+
+    <h3>2. Dashboard</h3>
+    <p>View the summary of your medicine stock and expired items.</p>
+
+    <h3>3. Adding Medicine</h3>
+    <p>Click "Add Medicine" to register new stock. Provide Name, Quantity, and Expiry Date.</p>
+
+    <h3>4. Managing Stock</h3>
+    <p>In the Medicine List, you can delete items or remove all expired medicines with one click.</p>
+
+    <div style="margin-top: 2rem;">
+        <a href="{% url 'welcome' %}" class="btn btn-primary">Go to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

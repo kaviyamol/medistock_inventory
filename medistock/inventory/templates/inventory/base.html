@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MediStock - Premium Inventory Management{% endblock %}</title>
+    <!-- Use the CSS we just created -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a href="{% url 'index' %}" class="navbar-brand">
+                <i class="fa-solid fa-boxes-stacked"></i> MediStock
+            </a>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <span class="nav-link">Welcome, {{ user.username }}</span>
+                    <a href="{% url 'welcome' %}" class="nav-link">Dashboard</a>
+                    <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-secondary">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% if messages %}
+            <div class="container message-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
