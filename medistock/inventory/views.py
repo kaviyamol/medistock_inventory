@@ -39,7 +39,7 @@ def login_view(request):
 def logout_view(request):
     """Handles user logout."""
     logout(request)
-    return redirect('index')
+    return render(request, 'inventory/logout_success.html')
 
 @login_required(login_url='login')
 def welcome(request):
